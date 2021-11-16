@@ -22,6 +22,7 @@ function getAuthorizationHeader() {
   return { Authorization: Authorization, 'X-Date': GMTString }
 }
 
+// 篩選需要的資料
 function narrowingBikeStations(item: TypeBikeStation) {
   return {
     StationUID: item.StationUID,
@@ -48,14 +49,14 @@ function narrowingBikeStations(item: TypeBikeStation) {
 }
 function narrowingTypeBikeAvailability(item: TypeBikeAvailability) {
   return {
-    StationUID: item.,
-    StationID: item.,
-    ServiceStatus: item.,
-    ServiceType: item.,
-    AvailableRentBikes: item.,
-    AvailableReturnBikes: item.,
-    SrcUpdateTime: item.,
-    UpdateTime: item.
+    StationUID: item.StationUID,
+    StationID: item.StationID,
+    ServiceStatus: item.ServiceStatus,
+    ServiceType: item.ServiceType,
+    AvailableRentBikes: item.AvailableRentBikes,
+    AvailableReturnBikes: item.AvailableReturnBikes,
+    SrcUpdateTime: item.SrcUpdateTime,
+    UpdateTime: item.UpdateTime
   }
 }
 function narrowingTypeCyclingShape(item: TypeCyclingShape) {
@@ -90,20 +91,7 @@ async function GET(endpoint: string, narrowCallback: Function): Promise<any> {
 }
 const filter = '?$filter=Picture%2FPictureUrl1%20ne%20null%20&$format=JSON'
 export const Bike = {
-  getStationByCityName:  (cityName: CityName | string) => GET(`${urlBikeStation}${cityName}${filter}`,narrowingBikeStations),
-  getAvailabilityCityName:  (cityName: CityName | string) => GET(`${urlAvailability}${cityName}${filter}`,narrowingBikeStations),
-  getCyclingShapeByCityName:  (cityName: CityName | string) => GET(`${urlCyclingShape}${cityName}${filter}`,narrowingBikeStations),
+  getStationByCityName: (cityName: CityName | string) => GET(`${urlBikeStation}${cityName}${filter}`, narrowingBikeStations),
+  getAvailabilityCityName: (cityName: CityName | string) => GET(`${urlAvailability}${cityName}${filter}`, narrowingTypeBikeAvailability),
+  getCyclingShapeByCityName: (cityName: CityName | string) => GET(`${urlCyclingShape}${cityName}${filter}`, narrowingTypeCyclingShape)
 }
-
-// NOTE RESTFUL api 說明
-// GET 取
-// POST 新增
-// PATCH 更新
-// DELETE 刪除
-//
-// fetch(`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/Taipei`)
-//   .then((response) => response.json())
-//   .then((data) => console.log('fetch', data))
-//   .catch((err) => {
-//     console.error(err)
-//   })
