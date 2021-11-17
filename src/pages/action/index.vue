@@ -36,6 +36,7 @@ function getGPS() {
     console.log('latitude', location.coords.latitude)
     console.log('longitude', location.coords.longitude)
     console.log('accuracy', location.coords.accuracy)
+    bikeStore.setLocation(location.coords.latitude, location.coords.longitude)
   })
 }
 
@@ -51,6 +52,7 @@ defineProps<{ msg: string }>()
 
   <div class="second-block">
     <button @click="getGPS">取得GPS</button>
+    使用者現在的位置 {{ bikeStore.userLocation }}
   </div>
 
   <div class="second-block">

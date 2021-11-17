@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 
 type typeBikeStore = {
   loading: boolean
+  userLocation: number[]
   bikeStations: TypeBikeStation[]
   bikeAvailability: TypeBikeAvailability[]
   bikeCyclingShape: TypeCyclingShape[]
@@ -15,6 +16,7 @@ export const useBikeStore = defineStore({
   state: () =>
   ({
     loading: false,
+    userLocation: [22.6038457, 120.3011509], //初始值MLD
     bikeStations: [],
     bikeAvailability: [],
     bikeCyclingShape: [],
@@ -41,6 +43,9 @@ export const useBikeStore = defineStore({
     },
     async setLoading(flag: boolean) {
       this.loading = flag
+    },
+    setLocation(latitude: number, longitude: number) {
+      this.userLocation = [latitude, longitude]
     }
   },
 
