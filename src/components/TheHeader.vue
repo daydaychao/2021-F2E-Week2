@@ -14,8 +14,8 @@ function goto(pathName: string) {
       <img src="@/assets/images/logo.png" />
     </div>
     <nav class="second-block">
-      <button @click="goto('home')">站點地圖</button>
-      <button @click="goto('cyclingShape')">自行車道</button>
+      <button class="btn-orange header_btn" @click="goto('home')">站點地圖</button>
+      <button class="disable btn-blue header_btn" @click="goto('cyclingShape')">自行車道</button>
     </nav>
   </header>
 </template>
