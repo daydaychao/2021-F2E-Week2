@@ -28,8 +28,8 @@ let currentStation: any = reactive({
 })
 
 // 當前車站資料
-function updateCurrent(UID: string) {
-  console.log('updateCurrent')
+function updateCurrentByUID(UID: string) {
+  console.log('updateCurrentByUID')
   let numInfo = nearAvailability.find((station) => station.StationUID === UID)
   currentStation.rent = numInfo?.AvailableRentBikes
   currentStation.rent = numInfo?.AvailableReturnBikes
@@ -55,7 +55,7 @@ watch(
   nearAvailability,
   (oldValue, newValue) => {
     console.log('資料變更就update')
-    updateCurrent(nearAvailability[0].StationUID)
+    updateCurrentByUID(nearAvailability[0].StationUID)
   },
   { deep: true }
 )
@@ -65,11 +65,11 @@ function switchAvailability(state: 'rent' | 'return') {
   switch (state) {
     case 'rent': //借車
       isRent.value = true
-      updateCurrent('KHH501209082') //測試用篩選號碼
+      updateCurrentByUID('KHH501209082') //測試用篩選號碼
 
     case 'return': //還車
       isRent.value = false
-      updateCurrent('KHH501209082') //測試用篩選號碼
+      updateCurrentByUID('KHH501209082') //測試用篩選號碼
   }
 }
 
@@ -126,7 +126,7 @@ function switchAvailability(state: 'rent' | 'return') {
       <h4>{{ currentStation.address }}</h4>
     </div>
     <div>
-      可借: <span class="number">{{ currentStation.rent }}</span> 可還:<span class="number">{{ currentStation.return }}</span>
+      可借: <span class="number">{{ currentStation.rent ? currentStation.rent : 0 }}</span> 可還:<span class="number">{{ currentStation.return ? currentStation.return : 0 }}</span>
     </div>
   </article>
 </template>
