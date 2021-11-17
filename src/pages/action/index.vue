@@ -5,6 +5,9 @@ import { StationAndAvailabilityCityNameZhTW, StationAndAvailabilityCityName, Cyc
 import { getEnumValues, changeName } from '@/tools/'
 
 const bikeStore = useBikeStore()
+// 使用者位置
+let lat = bikeStore.userLocation[0]
+let lon = bikeStore.userLocation[1]
 
 // 自行車站
 const cityList = getEnumValues(StationAndAvailabilityCityName)
