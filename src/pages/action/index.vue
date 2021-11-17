@@ -30,6 +30,17 @@ function getCyclingShapeData() {
   if (selectCyclingShape.value) bikeStore.getCyclingShapeData(selectCyclingShape.value)
 }
 
+function getGPS() {
+  if (!navigator.geolocation) alert('抓不到您的GPS資料')
+  navigator.geolocation.getCurrentPosition(function (location) {
+    console.log('latitude', location.coords.latitude)
+    console.log('longitude', location.coords.longitude)
+    console.log('accuracy', location.coords.accuracy)
+  })
+}
+
+const myLocation = reactive(['22.6038457,120.3011509,17'])
+
 defineProps<{ msg: string }>()
 </script>
 
@@ -37,6 +48,10 @@ defineProps<{ msg: string }>()
   <h1>功能測試</h1>
 
   api狀態: {{ bikeStore.loading }}
+
+  <div class="second-block">
+    <button @click="getGPS">取得GPS</button>
+  </div>
 
   <div class="second-block">
     <h4>Station</h4>
