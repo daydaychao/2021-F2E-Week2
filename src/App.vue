@@ -3,16 +3,12 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 
 import Header from '@/components/TheHeader.vue'
+import GPS from '@/components/TheGPS.vue'
 </script>
 
 <template>
-  <Header></Header>
+  <Header />
   <router-view />
+  <footer class="root-block footer">Copyright © UG BICY TRAVEL. All rights reserved. powered by 十萬塊的星之碎片 Ver0.1</footer>
+  <GPS />
 </template>
-
-<style>
-#app {
-  height: 100vh;
-  border: red 2px solid;
-}
-</style>

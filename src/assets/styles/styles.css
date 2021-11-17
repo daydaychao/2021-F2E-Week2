@@ -1,0 +1,41 @@
+/* var(--xxx)寫要繼承的變數 例子 */
+.text-orange {
+  color: var(--orange);
+}
+.bg-orange {
+  background: var(--orange);
+}
+.btn-orange {
+  background: var(--orange);
+}
+
+/* 測試用區塊 */
+.root-block {
+  padding: 5px;
+  border: 2px solid orange;
+}
+.second-block {
+  padding: 5px;
+  border: 1px solid #fff;
+}
+
+/* layout */
+.header {
+  background: #f5f5f5;
+}
+.footer {
+  background: #c4c4c4;
+  height: 60px;
+}
+
+.GPS {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px;
+  border: 2px solid orange;
+}
+.GPS_circle {
+  backround: var(--orange);
+  border-radius: 100%;
+}

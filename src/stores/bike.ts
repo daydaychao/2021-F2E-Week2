@@ -1,4 +1,4 @@
-import { TypeBikeStation, TypeBikeAvailability, TypeCyclingShape, CityName } from '@/types'
+import { TypeBikeStation, TypeBikeAvailability, TypeCyclingShape, CyclingShapeCityName, StationAndAvailabilityCityName } from '@/types'
 import { Bike as api } from '@/api'
 import { defineStore } from 'pinia'
 
@@ -19,15 +19,15 @@ export const useBikeStore = defineStore({
   } as typeBikeStore),
 
   actions: {
-    async getStationData(city: CityName | string) {
+    async getStationData(city: StationAndAvailabilityCityName) {
       const resData = await api.getStationByCityName(city)
       this.bikeStations = resData
     },
-    async getAvailabilityData(city: CityName | string) {
+    async getAvailabilityData(city: StationAndAvailabilityCityName) {
       const resData = await api.getAvailabilityCityName(city)
       this.bikeStations = resData
     },
-    async getCyclingShapeData(city: CityName | string) {
+    async getCyclingShapeData(city: CyclingShapeCityName) {
       const resData = await api.getCyclingShapeByCityName(city)
       this.bikeStations = resData
     },

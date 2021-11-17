@@ -1,0 +1,9 @@
+/* css使用變數的方式, :root寫變數 */
+:root {
+  --orange: #ffa500;
+  --green: #a9c027;
+  --blue: #015d83;
+  --grayLight: #e5e5e5;
+  --grayText: #a4a4a4;
+  --yellow: #f7ce3ed9;
+}
