@@ -5,8 +5,8 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/' },
     { path: '/2021-F2E-Week2/', name: 'home', component: () => import('@/pages/Home.vue') },
+    { path: '/2021-F2E-Week2/cycling-shape', name: 'cyclingShape', component: () => import('@/pages/CyclingShape.vue') },
     { path: '/2021-F2E-Week2/error/', name: 'error', component: () => import('@/pages/Error.vue') },
-
   ],
 })
 
