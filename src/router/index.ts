@@ -7,6 +7,7 @@ const router = createRouter({
     { path: '/2021-F2E-Week2/', name: 'home', component: () => import('@/pages/Home.vue') },
     { path: '/2021-F2E-Week2/cycling-shape', name: 'cyclingShape', component: () => import('@/pages/CyclingShape.vue') },
     { path: '/2021-F2E-Week2/error/', name: 'error', component: () => import('@/pages/Error.vue') },
+    { path: '/2021-F2E-Week2/action/', name: 'actionHome', component: () => import('@/pages/action/index.vue') },
   ],
 })
 

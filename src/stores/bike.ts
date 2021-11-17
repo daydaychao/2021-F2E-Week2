@@ -3,6 +3,7 @@ import { Bike as api } from '@/api'
 import { defineStore } from 'pinia'
 
 type typeBikeStore = {
+  loading: boolean
   bikeStations: TypeBikeStation[]
   bikeAvailability: TypeBikeAvailability[]
   bikeCyclingShape: TypeCyclingShape[]
@@ -13,24 +14,34 @@ export const useBikeStore = defineStore({
 
   state: () =>
   ({
+    loading: false,
     bikeStations: [],
     bikeAvailability: [],
-    bikeCyclingShape: []
+    bikeCyclingShape: [],
   } as typeBikeStore),
 
   actions: {
-    async getStationData(city: StationAndAvailabilityCityName) {
+    async getStationData(city: keyof typeof StationAndAvailabilityCityName) {
+      this.setLoading(true)
       const resData = await api.getStationByCityName(city)
       this.bikeStations = resData
+      this.setLoading(false)
     },
-    async getAvailabilityData(city: StationAndAvailabilityCityName) {
+    async getAvailabilityData(city: keyof typeof StationAndAvailabilityCityName) {
+      this.setLoading(true)
       const resData = await api.getAvailabilityCityName(city)
-      this.bikeStations = resData
+      this.bikeAvailability = resData
+      this.setLoading(false)
     },
-    async getCyclingShapeData(city: CyclingShapeCityName) {
+    async getCyclingShapeData(city: keyof typeof CyclingShapeCityName) {
+      this.setLoading(true)
       const resData = await api.getCyclingShapeByCityName(city)
-      this.bikeStations = resData
+      this.bikeCyclingShape = resData
+      this.setLoading(false)
     },
+    async setLoading(flag: boolean) {
+      this.loading = flag
+    }
   },
 
   getters: {
