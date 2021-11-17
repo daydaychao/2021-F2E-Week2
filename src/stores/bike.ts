@@ -32,4 +32,10 @@ export const useBikeStore = defineStore({
       this.bikeStations = resData
     },
   },
+
+  getters: {
+    getStation: (state) => state.bikeStations,
+    getAvailability: (state) => state.bikeAvailability,
+    getCyclingShape: (state) => state.bikeCyclingShape,
+  },
 })

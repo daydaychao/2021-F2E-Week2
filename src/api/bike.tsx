@@ -1,4 +1,4 @@
-import { TypeBikeStation, TypeBikeAvailability, TypeCyclingShape, CityName } from '@/types'
+import { TypeBikeStation, TypeBikeAvailability, TypeCyclingShape, StationAndAvailabilityCityName, CyclingShapeCityName } from '@/types'
 import { always, identity, map, memoizeWith, tap } from 'ramda'
 import jsSHA from 'jssha'
 
@@ -91,7 +91,7 @@ async function GET(endpoint: string, narrowCallback: Function): Promise<any> {
 }
 const filter = '?$filter=Picture%2FPictureUrl1%20ne%20null%20&$format=JSON'
 export const Bike = {
-  getStationByCityName: (cityName: CityName | string) => GET(`${urlBikeStation}${cityName}${filter}`, narrowingBikeStations),
-  getAvailabilityCityName: (cityName: CityName | string) => GET(`${urlAvailability}${cityName}${filter}`, narrowingTypeBikeAvailability),
-  getCyclingShapeByCityName: (cityName: CityName | string) => GET(`${urlCyclingShape}${cityName}${filter}`, narrowingTypeCyclingShape)
+  getStationByCityName: (cityName: StationAndAvailabilityCityName) => GET(`${urlBikeStation}${cityName}${filter}`, narrowingBikeStations),
+  getAvailabilityCityName: (cityName: StationAndAvailabilityCityName) => GET(`${urlAvailability}${cityName}${filter}`, narrowingTypeBikeAvailability),
+  getCyclingShapeByCityName: (cityName: CyclingShapeCityName) => GET(`${urlCyclingShape}${cityName}${filter}`, narrowingTypeCyclingShape)
 }

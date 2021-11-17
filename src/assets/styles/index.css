@@ -3,3 +3,8 @@ body {
   height: max-content;
   background-color: #c4c4c4;
 }
+
+.solid {
+  padding: 5px;
+  border: 1px solid #000;
+}
