@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   font-family: 'Noto Sans', sans-serif;
 }
@@ -30,14 +30,14 @@
   cursor: pointer;
 }
 
-.header_btn{
+.header_btn {
   width: 200px;
   height: 50px;
   border-radius: 10px;
   font-size: 1.5rem;
 }
 
-.se_btn{
+.se_btn {
   width: 150px;
   height: 50px;
   border-radius: 100px;
@@ -45,7 +45,7 @@
   margin-left: 20px;
 }
 
-.second-block button:first-child{
+.second-block button:first-child {
   margin-right: 25px;
 }
 
@@ -56,7 +56,7 @@
 .bg-orange {
   background: var(--orange);
 }
-.bg-white{
+.bg-white {
   background: #fff;
 }
 
@@ -65,7 +65,7 @@
   color: var(--grayText);
 }
 
-.disable_g{
+.disable_g {
   background: #fff;
   color: var(--green);
 }
@@ -87,43 +87,44 @@
   z-index: 10;
 }
 
-.content{
+.content {
   background-color: #f4f4f4;
   padding: 30px;
   position: relative;
 }
 
-.Homeimg{
+.Homeimg {
   text-align: center;
   margin: 3% 0 1%;
 }
 
-.Homeimg > h1{
+.Homeimg > h1 {
   font-size: 3rem;
   display: block;
   margin: 2% 0 0 0;
   padding: 0;
 }
 
-.Homeimg > p{
+.Homeimg > p {
   font-size: 1.12rem;
   margin: 0;
 }
 
 /*--車站--*/
-#app > main > article.car-nav{
+#app > main > article.car-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.Homeselect, .Homecar{
+.Homeselect,
+.Homecar {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Homeselect > select{
+.Homeselect > select {
   padding: 15px 0px;
   text-align: center;
   color: #a4a4a4;
@@ -133,10 +134,10 @@
   width: 100%;
   outline: none;
   margin-bottom: 5%;
-  min-width: 300px
+  min-width: 300px;
 }
 
-.Homecar span{
+.Homecar span {
   display: inline-block;
   margin-top: 5%;
 }
@@ -149,7 +150,7 @@
   font-size: 0.8rem;
 }
 
-.footer svg{
+.footer svg {
   vertical-align: middle;
 }
 
@@ -164,7 +165,7 @@
   justify-content: flex-end;
 }
 
-.GPS article:first-child{
+.GPS article:first-child {
   text-align: right;
   display: block;
   margin-right: 3%;
@@ -173,7 +174,7 @@
 .GPS_circle {
   width: 100px;
   height: 100px;
-  background: #F7911E;
+  background: #f7911e;
   border-radius: 100%;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 15%);
   text-align: center;
@@ -182,5 +183,9 @@
   justify-content: center;
   flex-direction: column;
   color: #fff;
+  cursor: pointer;
+}
+
+.pointer {
   cursor: pointer;
 }

@@ -9,8 +9,8 @@ function goto(pathName: string) {
 </script>
 
 <template>
-  <header class="root-block header">
-    <div class="second-block">
+  <header class="header">
+    <div class="second-block pointer" @click="goto('home')">
       <img src="@/assets/images/logo.png" />
     </div>
     <nav class="second-block">

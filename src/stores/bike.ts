@@ -7,7 +7,7 @@ type typeBikeStore = {
   userLocation: number[]
   bikeStations: TypeBikeStation[]
   bikeAvailability: TypeBikeAvailability[]
-  bikeCyclingShape: TypeCyclingShape[]
+  bikeCyclingShape: TypeCyclingShape[],
 }
 
 export const useBikeStore = defineStore({
@@ -16,16 +16,16 @@ export const useBikeStore = defineStore({
   state: () =>
   ({
     loading: false,
-    userLocation: [22.6038457, 120.3011509], //初始值MLD
+    userLocation: [22.6721792, 120.2847744], //初始值MLD
     bikeStations: [],
     bikeAvailability: [],
     bikeCyclingShape: [],
   } as typeBikeStore),
 
   actions: {
-    async getStationData(city: keyof typeof StationAndAvailabilityCityName) {
+    async getStationData(city: keyof typeof StationAndAvailabilityCityName, lat: number, lon: number) {
       this.setLoading(true)
-      const resData = await api.getStationByCityName(city)
+      const resData = await api.getStationByCityName(city, lat, lon)
       this.bikeStations = resData
       this.setLoading(false)
     },
@@ -46,11 +46,17 @@ export const useBikeStore = defineStore({
     },
     setLocation(latitude: number, longitude: number) {
       this.userLocation = [latitude, longitude]
-    }
+    },
   },
 
   getters: {
-    getStation: (state) => state.bikeStations,
+    nearAvailability: (state) => {
+      return state.bikeAvailability.filter((item) => {
+        return state.bikeStations.find((x) => {
+          return x.StationUID === item.StationUID
+        })
+      })
+    },
     getAvailability: (state) => state.bikeAvailability,
     getCyclingShape: (state) => state.bikeCyclingShape,
   },

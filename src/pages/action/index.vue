@@ -21,7 +21,7 @@ const selectCyclingShape = ref<keyof typeof CyclingShapeCityName>()
 
 // select打api抓取data
 function getStationData() {
-  if (selectStation.value) bikeStore.getStationData(selectStation.value)
+  if (selectStation.value) bikeStore.getStationData(selectStation.value, lat, lon)
 }
 function getAvailabilityData() {
   if (selectAvailability.value) bikeStore.getAvailabilityData(selectAvailability.value)
