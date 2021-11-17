@@ -1,7 +1,4 @@
-<script setup lang="ts">
-import { ref, reactive } from 'vue'
-defineProps<{ msg: string }>()
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <section class="GPS">

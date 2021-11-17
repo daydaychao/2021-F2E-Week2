@@ -6,15 +6,18 @@ import { getEnumValues } from '@/tools/'
 
 const bikeStore = useBikeStore()
 const count = ref(0)
-const state = reactive({
-  citiesName: getEnumValues(StationAndAvailabilityCityNameZhTW)
-})
+let cityList = getEnumValues(StationAndAvailabilityCityNameZhTW)
+console.log(cityList)
+
+// const state = reactive({
+//   citiesName: cityNameObj
+// })
 defineProps<{ msg: string }>()
 </script>
 
 <template>
   <main class="root-block">
-    <h1>{{ msg }}</h1>
+    <!-- <h1>{{ msg }}</h1> -->
     <article class="second-block">
       <!-- 放大鏡 -->
       <div class="text-orange">srgjlgdfk</div>
@@ -24,10 +27,9 @@ defineProps<{ msg: string }>()
         </svg>
       </i>
 
-      <select value="輸入想查詢的地點或者區域">
-        <div v-for="(city, index) in state.citiesName" :key="index">
-          <option>{{ city }}</option>
-        </div>
+      <select class="form-control" placeholder="輸入想查詢的地點或者區域">
+        123
+        <option v-for="(city, index) in cityList" :key="index">{{ city }}</option>
       </select>
     </article>
 

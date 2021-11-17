@@ -5,3 +5,4 @@ export const getEnumValues = (object: object) => {
 export const getEnumKeys = (object: object) => {
   return Object.keys(object)
 }
+

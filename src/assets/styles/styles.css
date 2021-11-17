@@ -18,6 +18,9 @@
   padding: 5px;
   border: 1px solid #fff;
 }
+.form-control {
+  width: 100px;
+}
 
 /* layout */
 .header {
