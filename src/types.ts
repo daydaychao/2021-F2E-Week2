@@ -1,9 +1,8 @@
 
 // https://ptx.transportdata.tw/MOTC/v2/Bike/api-docs/oas
 
-
 export enum StationAndAvailabilityCityName {
-  ChanghuaCounty = "ChanghuaCounty",
+  // ChanghuaCounty = "ChanghuaCounty",
   Chiayi = "Chiayi",
   Hsinchu = "Hsinchu",
   Kaohsiung = "Kaohsiung",
@@ -18,7 +17,7 @@ export enum StationAndAvailabilityCityName {
 }
 
 export enum StationAndAvailabilityCityNameZhTW {
-  ChanghuaCounty = "彰化縣",
+  // ChanghuaCounty = "彰化縣",
   Chiayi = "嘉義市",
   Hsinchu = "新竹市",
   Kaohsiung = "高雄市",
