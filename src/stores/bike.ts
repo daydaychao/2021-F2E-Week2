@@ -16,7 +16,7 @@ export const useBikeStore = defineStore({
   state: () =>
   ({
     loading: false,
-    userLocation: [22.6721792, 120.2847744], //初始值MLD
+    userLocation: [22.6038457, 120.3011509], //初始值MLD
     bikeStations: [],
     bikeAvailability: [],
     bikeCyclingShape: [],
@@ -50,14 +50,31 @@ export const useBikeStore = defineStore({
   },
 
   getters: {
-    nearAvailability: (state) => {
+    getNearAvailability: (state) => {
       return state.bikeAvailability.filter((item) => {
         return state.bikeStations.find((x) => {
           return x.StationUID === item.StationUID
         })
       })
     },
-    getAvailability: (state) => state.bikeAvailability,
-    getCyclingShape: (state) => state.bikeCyclingShape,
+    getFirstStationInfo: (state) => {
+      let nearList = state.bikeAvailability.filter((item) => {
+        return state.bikeStations.find((x) => {
+          return x.StationUID === item.StationUID
+        })
+      })
+      return nearList[0]
+    },
+    getFirstStationUID: (state) => {
+      let nearList = state.bikeAvailability.filter((item) => {
+        return state.bikeStations.find((x) => {
+          return x.StationUID === item.StationUID
+        })
+      })
+      console.log('nearList', nearList)
+      if (nearList[0]) return nearList[0].StationUID
+      else return {}
+
+    }
   },
 })

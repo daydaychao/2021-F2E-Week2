@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, watch } from 'vue'
+import { isProxy, isReactive, isRef, toRaw, ref, reactive, watch, computed, onMounted } from 'vue'
 import { useBikeStore } from '@/stores/bike'
 import { StationAndAvailabilityCityNameZhTW, StationAndAvailabilityCityName, CyclingShapeCityName, CyclingShapeCityNameZhTW } from '@/types'
 import { getEnumValues, changeName } from '@/tools/'
@@ -16,9 +16,6 @@ const selectCity = ref<keyof typeof StationAndAvailabilityCityName>() //select
 let lat = bikeStore.userLocation[0]
 let lon = bikeStore.userLocation[1]
 
-// 附近的自行車租還資訊
-let nearAvailability = bikeStore.nearAvailability
-
 // 當前車站資料
 let currentStation: any = reactive({
   rent: 0,
@@ -27,10 +24,25 @@ let currentStation: any = reactive({
   address: ''
 })
 
-// 當前車站資料
+// 更新車站資料 (api抓資料自動帶入)
+function updateCurrentByFirstStation(UID: string) {
+  if (!UID) {
+    currentStation.name = '您附近沒有匹配的自行車站'
+    currentStation.address = '請再選擇城市或是更新GPS試一次'
+    currentStation.rent = 0
+    currentStation.rent = 0
+    return
+  }
+  currentStation.rent = bikeStore.getFirstStationInfo.AvailableRentBikes
+  currentStation.rent = bikeStore.getFirstStationInfo.AvailableReturnBikes
+  let desInfo = bikeStore.bikeStations.find((station) => station.StationUID === UID)
+  currentStation.name = desInfo?.StationName.Zh_tw
+  currentStation.address = desInfo?.StationAddress.Zh_tw
+}
+// 更新車站資料 (手動帶入地圖的UID)
 function updateCurrentByUID(UID: string) {
   console.log('updateCurrentByUID')
-  let numInfo = nearAvailability.find((station) => station.StationUID === UID)
+  let numInfo = bikeStore.getNearAvailability.find((station) => station.StationUID === UID)
   currentStation.rent = numInfo?.AvailableRentBikes
   currentStation.rent = numInfo?.AvailableReturnBikes
   let desInfo = bikeStore.bikeStations.find((station) => station.StationUID === UID)
@@ -50,14 +62,19 @@ async function handleSelect() {
   await getStationData()
   await getAvailabilityData()
 }
-//資料變更就update
+
 watch(
-  nearAvailability,
-  (oldValue, newValue) => {
-    console.log('資料變更就update')
-    updateCurrentByUID(nearAvailability[0].StationUID)
+  () => bikeStore.getFirstStationInfo,
+  (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+      if (!newVal?.StationUID) {
+        updateCurrentByFirstStation('')
+        return
+      }
+      updateCurrentByFirstStation(newVal.StationUID)
+    }
   },
-  { deep: true }
+  { immediate: true, deep: true }
 )
 
 const isRent = ref(true)
@@ -65,11 +82,11 @@ function switchAvailability(state: 'rent' | 'return') {
   switch (state) {
     case 'rent': //借車
       isRent.value = true
-      updateCurrentByUID('KHH501209082') //測試用篩選號碼
+      updateCurrentByUID('KHH501208011') //測試用篩選號碼
 
     case 'return': //還車
       isRent.value = false
-      updateCurrentByUID('KHH501209082') //測試用篩選號碼
+      updateCurrentByUID('KHH501208011') //測試用篩選號碼
   }
 }
 
@@ -78,7 +95,6 @@ function switchAvailability(state: 'rent' | 'return') {
 
 <template>
   <main class="content">
-    <!-- <h1>{{ msg }}</h1> -->
     <article class="car-nav">
       <div class="Homeselect">
         <select class="form-control" value="輸入想查詢的地點" v-model="selectCity" @change="handleSelect">
@@ -119,7 +135,6 @@ function switchAvailability(state: 'rent' | 'return') {
       <p>趕快開始騎上UBike四處旅遊吧 ! 邊騎腳踏車邊用手機是很危險的喔 (´･ω･`)</p>
     </article>
   </main>
-
   <article class="HomeCurrentStation" v-if="currentStation">
     <div>
       <h2>{{ currentStation.name }}</h2>
@@ -135,7 +150,10 @@ function switchAvailability(state: 'rent' | 'return') {
 .HomeCurrentStation {
   display: flex;
   flex-direction: row;
-  position: absolute;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
   height: 110px;

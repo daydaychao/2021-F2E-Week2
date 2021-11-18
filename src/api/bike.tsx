@@ -91,7 +91,7 @@ async function GET(endpoint: string, narrowCallback: Function): Promise<any> {
 }
 // const filter = '?$filter=Picture%2FPictureUrl1%20ne%20null%20&$format=JSON'
 export const Bike = {
-  getStationByCityName: (cityName: keyof typeof stationCN, lat: number, lon: number) => GET(`${urlBikeStation}${cityName}?$spatialFilter=nearby(${lat},${lon},${200})`, narrowingBikeStations),
+  getStationByCityName: (cityName: keyof typeof stationCN, lat: number, lon: number) => GET(`${urlBikeStation}${cityName}?$spatialFilter=nearby(${lat},${lon},${1000})`, narrowingBikeStations),
   getAvailabilityCityName: (cityName: keyof typeof stationCN) => GET(`${urlAvailability}${cityName}`, narrowingTypeBikeAvailability),
   getCyclingShapeByCityName: (cityName: keyof typeof cyclingCN) => GET(`${urlCyclingShape}${cityName}`, narrowingTypeCyclingShape)
 }

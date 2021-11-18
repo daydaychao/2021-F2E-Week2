@@ -1,6 +1,6 @@
 html,
 body {
-  height: max-content;
+  height: -webkit-fill-available;
   padding: 0;
   margin: 0;
   color: #333;
@@ -12,4 +12,8 @@ img {
 
 #app {
   height: inherit;
+}
+
+* {
+  box-sizing: border-box;
 }
