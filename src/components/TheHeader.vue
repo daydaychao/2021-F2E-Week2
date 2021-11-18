@@ -11,7 +11,8 @@ function goto(pathName: string) {
 <template>
   <header class="header">
     <div class="second-block pointer" @click="goto('home')">
-      <img src="@/assets/images/logo.png" />
+      <img class="logo_pc" src="@/assets/images/logo.png" />
+      <img class="logo_m" src="@/assets/images/logo_m.png" />
     </div>
     <nav class="second-block">
       <button class="btn-orange header_btn" @click="goto('home')">站點地圖</button>
