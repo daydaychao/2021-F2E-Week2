@@ -3,11 +3,15 @@ import { Bike as api } from '@/api'
 import { defineStore } from 'pinia'
 
 type typeBikeStore = {
-  loading: boolean
-  userLocation: number[]
-  bikeStations: TypeBikeStation[]
-  bikeAvailability: TypeBikeAvailability[]
+  loading: boolean,
+  userLocation: number[],
+  bikeStations: TypeBikeStation[],
+  bikeAvailability: TypeBikeAvailability[],
   bikeCyclingShape: TypeCyclingShape[],
+  bikeNearByStations: TypeBikeStation[],
+  bikeNearByAvailability: TypeBikeAvailability[],
+  selectedBikeStation: any,
+  isRent: boolean
 }
 
 export const useBikeStore = defineStore({
@@ -16,10 +20,14 @@ export const useBikeStore = defineStore({
   state: () =>
   ({
     loading: false,
-    userLocation: [22.6721792, 120.2847744], //初始值MLD
+    userLocation: [], //初始值MLD
     bikeStations: [],
     bikeAvailability: [],
     bikeCyclingShape: [],
+    bikeNearByStations: [],
+    bikeNearByAvailability:[],
+    selectedBikeStation: {},
+    isRent: true
   } as typeBikeStore),
 
   actions: {
@@ -41,12 +49,30 @@ export const useBikeStore = defineStore({
       this.bikeCyclingShape = resData
       this.setLoading(false)
     },
+    async getNearByStationData(lat: number, lon: number) {
+      this.setLoading(true)
+      const resData = await api.getNearByStation(lat, lon)
+      this.bikeNearByStations = resData
+      this.setLoading(false)
+    },
+    async getNearByAvailabilityData(lat: number, lon: number) {
+      this.setLoading(true)
+      const resData = await api.getNearByAvailability(lat, lon)
+      this.bikeNearByAvailability = resData
+      this.setLoading(false)
+    },
     async setLoading(flag: boolean) {
       this.loading = flag
     },
     setLocation(latitude: number, longitude: number) {
       this.userLocation = [latitude, longitude]
     },
+    setIsRent(isRent: boolean){
+      this.isRent = isRent;
+    },
+    setSelectedBikeStation(stationInfo:any) {
+      this.selectedBikeStation = stationInfo;
+    }
   },
 
   getters: {
@@ -59,5 +85,9 @@ export const useBikeStore = defineStore({
     },
     getAvailability: (state) => state.bikeAvailability,
     getCyclingShape: (state) => state.bikeCyclingShape,
+    getNearByStations: (state) => state.bikeNearByStations,
+    getNearByAvailability: (state) => state.bikeNearByAvailability,
+    getSelectedBikeStation: (state) => state.selectedBikeStation,
+    getIsRent: (state) => state.isRent
   },
 })

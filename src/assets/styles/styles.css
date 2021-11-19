@@ -115,6 +115,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
 }
 
 .Homeselect,
@@ -189,3 +190,58 @@
 .pointer {
   cursor: pointer;
 }
+
+
+/* overwrite leaftlet style */
+.leaflet-pane {
+  z-index: 0 !important;
+}
+
+
+/* map custom marker */
+.dialogBox{
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  text-align: center;
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 50px;
+}
+.dialogBox::after{
+  content:"";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  left: 20px;
+  bottom: -10px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 12px solid white;
+}
+
+.dialogBox.empty{
+  background-color: #c4c4c4;
+
+}
+.dialogBox.empty::after{
+  border-top: 12px solid #c4c4c4;
+}
+
+.dialogBox.rare{
+  background-color: #ee675c ;
+}
+.dialogBox.rare::after{
+  border-top: 12px solid #ee675c ;
+}
+
+.dialogBox.enough{
+  background-color: #a9c027;
+}
+.dialogBox.enough::after{
+  border-top: 12px solid #a9c027;
+}
+

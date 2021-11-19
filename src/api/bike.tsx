@@ -6,6 +6,8 @@ const HOST = 'https://ptx.transportdata.tw/MOTC/v2/'
 const urlBikeStation = 'Bike/Station/'
 const urlAvailability = 'Bike/Availability/'
 const urlCyclingShape = 'Cycling/Shape/'
+const urlNearByStation = 'Bike/Station/NearBy'
+const urlNearByAvailability = 'Bike/Availability/NearBy'
 
 function getAuthorizationHeader() {
   //  填入自己 ID、KEY 開始
@@ -91,7 +93,9 @@ async function GET(endpoint: string, narrowCallback: Function): Promise<any> {
 }
 // const filter = '?$filter=Picture%2FPictureUrl1%20ne%20null%20&$format=JSON'
 export const Bike = {
-  getStationByCityName: (cityName: keyof typeof stationCN, lat: number, lon: number) => GET(`${urlBikeStation}${cityName}?$spatialFilter=nearby(${lat},${lon},${200})`, narrowingBikeStations),
+  getStationByCityName: (cityName: keyof typeof stationCN, lat: number, lon: number) => GET(`${urlBikeStation}${cityName}?$spatialFilter=nearby(${lat},${lon},${100})`, narrowingBikeStations),
   getAvailabilityCityName: (cityName: keyof typeof stationCN) => GET(`${urlAvailability}${cityName}`, narrowingTypeBikeAvailability),
-  getCyclingShapeByCityName: (cityName: keyof typeof cyclingCN) => GET(`${urlCyclingShape}${cityName}`, narrowingTypeCyclingShape)
+  getCyclingShapeByCityName: (cityName: keyof typeof cyclingCN) => GET(`${urlCyclingShape}${cityName}`, narrowingTypeCyclingShape),
+  getNearByStation: (lat: number, lon: number) => GET(`${urlNearByStation}?$spatialFilter=nearby(${lat},${lon},${500})`, narrowingBikeStations),
+  getNearByAvailability: (lat: number, lon: number) => GET(`${urlNearByAvailability}?$spatialFilter=nearby(${lat},${lon},${500})`, narrowingTypeBikeAvailability)
 }

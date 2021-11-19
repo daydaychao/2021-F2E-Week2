@@ -7,7 +7,7 @@ function getGPS() {
   if (!navigator.geolocation) alert('抓不到您的GPS資料')
   navigator.geolocation.getCurrentPosition(function (location) {
     console.log('你的gps', location.coords.latitude, location.coords.longitude)
-    bikeStore.setLocation(location.coords.latitude, location.coords.longitude)
+    bikeStore.setLocation(location.coords.latitude, location.coords.longitude);
   })
 }
 </script>
