@@ -462,6 +462,7 @@ h5::after{
     display: flex;
     flex-direction: column;
     width: 100%;
+    pointer-events: none;
   }
 
   .Homecar .car-btns > button{
@@ -470,6 +471,7 @@ h5::after{
     padding: 3% 0;
     margin-left: 0;
     height: inherit;
+    pointer-events: all;
   }
 
   .Homecar .car-btns > button:first-child{
