@@ -11,6 +11,13 @@
   box-shadow: 0px 3px 4px rgb(0 0 0 / 15%);
   border: none;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-orange:hover {
+  background: var(--orange);
+  color: #fff !important;
+  transition: 0.3s ease;
 }
 
 .btn-blue {
@@ -29,6 +36,13 @@
   box-shadow: 0px 3px 4px rgb(0 0 0 / 15%);
   border: none;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-green:hover {
+  background: var(--green);
+  color: #fff !important;
+  transition: 0.3s ease;
 }
 
 .header_btn {
@@ -76,6 +90,13 @@
 
 .disable_g {
   background: #fff;
+}
+
+#app > main > article.car-nav > div.Homecar > div > button.disable_g.btn-orange{
+  color: var(--orange);
+}
+
+#app > main > article.car-nav > div.Homecar > div > button.disable_g.btn-green{
   color: var(--green);
 }
 
@@ -90,11 +111,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 5%;
   box-shadow: 0px 2px 10px rgb(0 0 0 / 25%);
   position: relative;
   z-index: 10;
-  height: 100px;
 }
 
 .content {
@@ -104,19 +124,29 @@
 
 .Homeimg {
   text-align: center;
-  margin: 3% 0 1%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .Homeimg > h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   display: block;
-  margin: 2% 0 0 0;
+  margin: 1% 0 0 0;
   padding: 0;
 }
 
 .Homeimg > p {
   font-size: 1.12rem;
   margin: 0;
+}
+
+.Homeimg img{
+  width: 20%;
+}
+
+#app > main > article.car-nav > div.Homeselect > span{
+  margin-top: 5%;
 }
 
 /*--車站--*/
@@ -146,7 +176,6 @@
   border-radius: 5px;
   width: 100%;
   outline: none;
-  margin-bottom: 5%;
   min-width: 300px;
 }
 
@@ -186,14 +215,15 @@
 .HomeCurrentStation > .StationNum{
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
-.HomeCurrentStation > div.StationNum > hr{
+/* .HomeCurrentStation > div.StationNum > hr{
   width: 100%;
   border: 1px solid #fff;
   transform: rotate(90deg);
   padding: 0 8%;
-}
+} */
 
 .HomeCurrentStation > div.StationNum > div{
   display: flex;
@@ -208,7 +238,7 @@
 
 .HomeCurrentStation h2{
   font-size: 2.25rem;
-  margin: 0 0 1% 0;
+  margin: 0;
 }
 
 .HomeCurrentStation h4{
@@ -218,7 +248,11 @@
 }
 
 h5{
-  margin: 0;
+  margin: 0 10px 0 0;
+}
+
+h5::after{
+  content: " : ";
 }
 
 #app > main > article.map_content > img{
@@ -235,9 +269,8 @@ h5{
   object-fit: cover;
 }
 
-.footer_pc {
+.footer_pc, .footer_m{
   background: #c4c4c4;
-  height: 60px;
   text-align: center;
   color: #fff;
   font-size: 0.8rem;
@@ -248,7 +281,7 @@ h5{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 3%;
+  padding: 1.5%;
 }
 
 .footer_pc svg {
@@ -261,12 +294,11 @@ h5{
 
 .GPS {
   position: fixed;
-  right: 30px;
-  bottom: 175px;
+  right: 5%;
+  bottom: 17%;
   display: flex;
   align-items: center;
   flex-direction: row;
-  width: 260px;
   justify-content: flex-end;
   z-index: 999;
 }
@@ -274,7 +306,7 @@ h5{
 .GPS article:first-child {
   text-align: right;
   display: block;
-  margin-right: 3%;
+  margin-right: 10px;
 }
 
 .GPS_circle {
@@ -290,6 +322,10 @@ h5{
   flex-direction: column;
   color: #fff;
   cursor: pointer;
+}
+
+.GPS_circle svg{
+  width: 50%;
 }
 
 .pointer {
@@ -350,17 +386,28 @@ h5{
   border-top: 12px solid #a9c027;
 }
 
+.line {
+  margin: 0 5px;
+  display: block;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
 @media screen and (max-width:710px) {
   .header{
     flex-direction: column;
     justify-content: space-evenly;
-    padding: 30px 0;
-    height: 170px;
+  }
+
+  #app > header > div.pointer{
+    margin: 15px 0;
   }
 
   #app > header > nav{
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto 5%;
+    display: flex;
+    justify-content: center;
   }
 
   .header_btn{
@@ -368,42 +415,76 @@ h5{
   }
 
   .second-block button:first-child{
-    margin-right: 5%;
+    margin-right: 0;
   }
 
   #app main article.car-nav {
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 360px);
+    height: calc(100vh - 275px);
     top: 0;
     left: 0;
-}
+    position: absolute;
+    display: inherit;
+    z-index: 99;
+  }
 
   .Homeselect{
     width: 80%;
-    margin-top: 3%;
+    margin: 5% auto 0;
+  }
+
+  .Homeimg img{
+    width: 40%;
+  }
+
+  .Homeimg > h1{
+    font-size: 1rem;
+  }
+
+  .Homeimg > p {
+    font-size: 0.5rem;
   }
 
   .Homecar{
     position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: flex-start;
+    bottom: 3%;
+    left: 10%;
+    width: 80%;
+  }
+
+  .header_btn{
+    font-size: 1.2rem;
   }
 
   .Homecar .car-btns{
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .Homecar .car-btns > button{
-    height: 25%;
-    width: 85%;
+    width: 35%;
+    font-size: 1.5rem;
+    padding: 3% 0;
+    margin-left: 0;
+    height: inherit;
   }
 
   .Homecar .car-btns > button:first-child{
-    margin-bottom: 8%;
+    margin-bottom: 10px;
+  }
+
+  .Homecar span{
+    display: none;
+  }
+
+  #app > main > article.car-nav > div.Homeselect > span,#app > main > article.map_content > article > p{
+    display: none;
+  }
+
+  .GPS article:first-child{
+    display: none;
   }
 
   .logo_pc{
@@ -412,13 +493,26 @@ h5{
 
   .logo_m{
     display: block;
-    margin-bottom: 30px;
+    max-width: 130px;
+  }
+
+  h5{
+    margin: 0;
+  }
+
+  h5::after{
+    content: "";
+    display: none;
   }
 
   .map_content {
     width: 100%;
-    height: calc(100vh - 230px);
+    height: calc(100vh - 170px);
     overflow: hidden;
+  }
+
+  .Homeselect select{
+    min-width: inherit;
   }
 
   .HomeCurrentStation{
@@ -440,12 +534,36 @@ h5{
     flex-direction: column;
   }
 
-  .HomeCurrentStation > div.StationNum > hr{
+  /* .HomeCurrentStation > div.StationNum > hr{
     padding: 0 16%;
-  }
+  } */
 
   .GPS{
-    bottom: 225px;
+    bottom: calc(100vh - 81.5%);
+    right: 5%;
+  }
+
+  .GPS_circle{
+    width: 20%;
+    height: 20%;
+    font-size: 0.8rem;
+    padding: 3%;
+  }
+
+  .StationNum{
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .StationName h2{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .HomeCurrentStation .number{
+    font-size: 2rem;
+    line-height: 2rem;
   }
 
   .footer_pc{
@@ -455,7 +573,21 @@ h5{
   .footer_m{
     display: block;
     text-align: center;
-    margin-top: 2%;
   }
 
+  .Homeimg{
+    top: 50%;
+    transform: translateY(-85%);
+  }
+}
+
+@media screen and (max-height:750px) {
+  .Homeimg img{
+    display: none;
+  }
+
+  .Homeimg{
+    top: 50%;
+    transform: translateY(-450%);
+  }
 }
