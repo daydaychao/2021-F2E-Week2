@@ -12,12 +12,12 @@ async function getGPS() {
     bikeStore.setLocation(0, 0)
   }
   await navigator.geolocation.getCurrentPosition(function (location) {
-    // console.log('你的gps', location.coords.latitude, location.coords.longitude)
-    // bikeStore.setLocation(location.coords.latitude, location.coords.longitude)
+    console.log('你的gps', location.coords.latitude, location.coords.longitude)
+    bikeStore.setLocation(location.coords.latitude, location.coords.longitude)
 
     //test
-    bikeStore.setLocation(22.6037664, 120.3010409)
-    console.log('location', bikeStore.userLocation[0], bikeStore.userLocation[1])
+    // bikeStore.setLocation(22.6037664, 120.3010409)
+    // console.log('location', bikeStore.userLocation[0], bikeStore.userLocation[1])
     emit('GpsEvent')
   })
 }
