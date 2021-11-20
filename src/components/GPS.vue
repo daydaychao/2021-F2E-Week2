@@ -9,7 +9,6 @@ async function getGPS() {
   console.log('getGPS')
   if (!navigator.geolocation) {
     alert('抓不到您的GPS資料')
-    bikeStore.setLocation(0, 0)
   }
   await navigator.geolocation.getCurrentPosition(function (location) {
     console.log('你的gps', location.coords.latitude, location.coords.longitude)
