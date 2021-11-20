@@ -158,7 +158,6 @@
   top: 2.5%;
   left: 1.5%;
   z-index: 10;
-  pointer-events: none;
 }
 
 .Homeselect,
@@ -462,7 +461,6 @@ h5::after{
     display: flex;
     flex-direction: column;
     width: 100%;
-    pointer-events: none;
   }
 
   .Homecar .car-btns > button{
@@ -471,7 +469,6 @@ h5::after{
     padding: 3% 0;
     margin-left: 0;
     height: inherit;
-    pointer-events: all;
   }
 
   .Homecar .car-btns > button:first-child{
@@ -516,7 +513,6 @@ h5::after{
 
   .Homeselect select{
     min-width: inherit;
-    pointer-events:all;
   }
 
   .HomeCurrentStation{
@@ -595,3 +591,10 @@ h5::after{
     transform: translateY(-450%);
   }
 }
+
+/* pointer-events fixed*/
+.car-nav,.car-btns{
+  pointer-events: none;
+}
+.car-btns button,.Homeselect{
+  pointer-events: all;}
