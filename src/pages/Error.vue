@@ -25,7 +25,7 @@ function getStationData() {
 function getAvailabilityData() {
   if (selectCity.value) bikeStore.getAvailabilityData(selectCity.value)
 }
-// *不參考縣市資訊，直接抓取位置附近站點
+// 不參考縣市資訊，直接抓取位置附近站點
 function getNearByStationData() {
   if (bikeStore.userLocation) bikeStore.getNearByStationData(bikeStore.userLocation[0], bikeStore.userLocation[1])
 }
@@ -52,7 +52,7 @@ const isRent = ref(true)
 </script>
 
 <template>
-<main class="content">
+  <main class="content">
     <article v-if="bikeStore.userLocation[0] && bikeStore.userLocation[1]" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%">
       <Map :location="[bikeStore.userLocation[0], bikeStore.userLocation[1]]" :stations="bikeStore.getNearByStations" :availability="bikeStore.getNearByAvailability" :isRent="bikeStore.getIsRent" />
     </article>
@@ -74,9 +74,9 @@ const isRent = ref(true)
         <p>您該不會是沒開Gps權限吧，還是您現在不在地球呢 (´･ω･`)</p>
       </article>
 
-      <div @click="handleGPS()">
-        <GPS />
-      </div>
+      <!-- <div @click="handleGPS()"> -->
+      <Gps />
+      <!-- </div> -->
     </article>
   </main>
 </template>

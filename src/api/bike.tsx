@@ -28,37 +28,37 @@ function getAuthorizationHeader() {
 function narrowingBikeStations(item: TypeBikeStation) {
   return {
     StationUID: item.StationUID,
-    StationID: item.StationUID,
-    AuthorityID: item.StationUID,
+    // StationID: item.StationUID,
+    // AuthorityID: item.StationUID,
     StationName: {
       Zh_tw: item.StationName.Zh_tw,
-      En: item.StationName.En
+      // En: item.StationName.En
     },
     StationPosition: {
       PositionLon: item.StationPosition.PositionLon,
       PositionLat: item.StationPosition.PositionLat,
-      GeoHash: item.StationPosition.GeoHash
+      // GeoHash: item.StationPosition.GeoHash
     },
     StationAddress: {
       Zh_tw: item.StationAddress.Zh_tw,
-      En: item.StationAddress.En
+      // En: item.StationAddress.En
     },
-    BikesCapacity: item.BikesCapacity,
-    ServiceType: item.ServiceType,
-    SrcUpdateTime: item.SrcUpdateTime,
-    UpdateTime: item.UpdateTime
+    // BikesCapacity: item.BikesCapacity,
+    // ServiceType: item.ServiceType,
+    // SrcUpdateTime: item.SrcUpdateTime,
+    // UpdateTime: item.UpdateTime
   }
 }
 function narrowingTypeBikeAvailability(item: TypeBikeAvailability) {
   return {
     StationUID: item.StationUID,
-    StationID: item.StationID,
+    // StationID: item.StationID,
     ServiceStatus: item.ServiceStatus,
     ServiceType: item.ServiceType,
     AvailableRentBikes: item.AvailableRentBikes,
     AvailableReturnBikes: item.AvailableReturnBikes,
-    SrcUpdateTime: item.SrcUpdateTime,
-    UpdateTime: item.UpdateTime
+    // SrcUpdateTime: item.SrcUpdateTime,
+    // UpdateTime: item.UpdateTime
   }
 }
 function narrowingTypeCyclingShape(item: TypeCyclingShape) {
@@ -93,8 +93,8 @@ async function GET(endpoint: string, narrowCallback: Function): Promise<any> {
 }
 // const filter = '?$filter=Picture%2FPictureUrl1%20ne%20null%20&$format=JSON'
 export const Bike = {
-  getStationByCityName: (cityName: keyof typeof stationCN, lat: number, lon: number) => GET(`${urlBikeStation}${cityName}?$spatialFilter=nearby(${lat},${lon},${100})`, narrowingBikeStations),
-  getAvailabilityCityName: (cityName: keyof typeof stationCN) => GET(`${urlAvailability}${cityName}`, narrowingTypeBikeAvailability),
+  getStationByCityName: (cityName: keyof typeof stationCN, lat?: number, lon?: number) => GET(`${urlBikeStation}${cityName}?$top=30`, narrowingBikeStations),
+  getAvailabilityCityName: (cityName: keyof typeof stationCN) => GET(`${urlAvailability}${cityName}?$top=30`, narrowingTypeBikeAvailability),
   getCyclingShapeByCityName: (cityName: keyof typeof cyclingCN) => GET(`${urlCyclingShape}${cityName}`, narrowingTypeCyclingShape),
   getNearByStation: (lat: number, lon: number) => GET(`${urlNearByStation}?$spatialFilter=nearby(${lat},${lon},${500})`, narrowingBikeStations),
   getNearByAvailability: (lat: number, lon: number) => GET(`${urlNearByAvailability}?$spatialFilter=nearby(${lat},${lon},${500})`, narrowingTypeBikeAvailability)

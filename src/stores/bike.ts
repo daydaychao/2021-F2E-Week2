@@ -20,12 +20,12 @@ export const useBikeStore = defineStore({
   state: () =>
   ({
     loading: false,
-    userLocation: [], //初始值MLD
+    userLocation: [],
     bikeStations: [],
     bikeAvailability: [],
     bikeCyclingShape: [],
     bikeNearByStations: [],
-    bikeNearByAvailability:[],
+    bikeNearByAvailability: [],
     selectedBikeStation: {},
     isRent: true
   } as typeBikeStore),
@@ -67,11 +67,11 @@ export const useBikeStore = defineStore({
     setLocation(latitude: number, longitude: number) {
       this.userLocation = [latitude, longitude]
     },
-    setIsRent(isRent: boolean){
-      this.isRent = isRent;
+    setIsRent(isRent: boolean) {
+      this.isRent = isRent
     },
-    setSelectedBikeStation(stationInfo:any) {
-      this.selectedBikeStation = stationInfo;
+    setSelectedBikeStation(stationInfo: any) {
+      this.selectedBikeStation = stationInfo
     }
   },
 
@@ -83,11 +83,13 @@ export const useBikeStore = defineStore({
         })
       })
     },
+    getUserLocation: (state) => state.userLocation,
     getAvailability: (state) => state.bikeAvailability,
     getCyclingShape: (state) => state.bikeCyclingShape,
     getNearByStations: (state) => state.bikeNearByStations,
     getNearByAvailability: (state) => state.bikeNearByAvailability,
     getSelectedBikeStation: (state) => state.selectedBikeStation,
-    getIsRent: (state) => state.isRent
+    getIsRent: (state) => state.isRent,
+    getHasLocation: (state) => Boolean(state.userLocation[0]),
   },
 })
