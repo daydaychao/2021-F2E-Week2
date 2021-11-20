@@ -7,7 +7,7 @@ export const getEnumKeys = (object: object) => {
 }
 
 // 城市中文英文轉換 (字串陣列,enum)
-export const changeName = (preList: string, enumList: any) => {
+export const changeName = (preList: string[], enumList: any) => {
   let newList: string[] = []
   preList.map((x) => {
     return (Object.keys(enumList) as Array<keyof typeof enumList>).map((key, index) => {
