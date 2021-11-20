@@ -139,13 +139,38 @@ function switchAvailability(state: 'rent' | 'return') {
       </div>
     </article>
 
-    <article class="Homeimg">
-      <img src="@/assets/images/home_hurry.png" />
-      <h1>趕快開始騎上UBike四處旅遊吧 !</h1>
-      <p>趕快開始騎上UBike四處旅遊吧 ! 邊騎腳踏車邊用手機是很危險的喔 (´･ω･`)</p>
+    <article class="map_content">
+      <!--我只是假地圖，請記得把我刪掉-->
+      <!-- <img src="@/assets/images/ex_map.jpg" /> -->
+      <!--我只是假地圖，請記得把我刪掉-->
+
+      <article class="Homeimg">
+        <img src="@/assets/images/home_hurry.png" />
+        <h1>趕快開始騎上UBike四處旅遊吧 !</h1>
+        <p>邊騎腳踏車邊用手機是很危險的喔 (´･ω･`)</p>
+      </article>
     </article>
+
+    <!-- <article class="HomeCurrentStation" v-if="currentStation">
+      <div class="StationName">
+        <h2>{{ currentStation.name }}捷運木柵站</h2>
+        <h4>{{ currentStation.address }}木柵路四段82巷18號前(捷運橋樑下)</h4>
+      </div>
+      <div class="StationNum">
+        <div>
+          <h5>可借:</h5>
+          <span class="number">{{ currentStation.rent ? currentStation.rent : 999 }}</span>
+        </div>
+        <hr />
+        <div>
+          <h5>可還:</h5>
+          <span class="number">{{ currentStation.return ? currentStation.return : 999 }}</span>
+        </div>
+      </div>
+    </article>-->
   </main>
 
+  <!-- <<<<<<< HEAD -->
   <article class="HomeCurrentStation" v-if="bikeStore.getSelectedBikeStation.name != null">
     <div>
       <h2>{{ bikeStore.getSelectedBikeStation?.name || '請點擊自行車站點' }}</h2>
@@ -163,23 +188,6 @@ function switchAvailability(state: 'rent' | 'return') {
 </template>
 
 <style scoped>
-.HomeCurrentStation {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 110px;
-  background: #f7ce3ed9;
-  z-index: 10;
-}
-.HomeCurrentStation .number {
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 65px;
-  text-align: center;
-}
-
 .icon {
   display: inline-block;
   width: 14px;
