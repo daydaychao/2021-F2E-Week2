@@ -4,6 +4,24 @@
   list-style: none;
 }
 
+
+.btn-orange {
+  background: var(--orange);
+  color: #fff;
+  outline: none;
+  box-shadow: 0px 3px 4px rgb(0 0 0 / 15%);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-orange:hover {
+  background: var(--orange);
+  color: #fff !important;
+  transition: 0.3s ease;
+}
+
+
 .btn-rent {
   background: #fff;
   color: var(--orange);
