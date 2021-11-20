@@ -90,7 +90,7 @@ watch(
   { immediate: true, deep: true }
 )
 
-const isRent = ref(true)
+let isRent = ref(true)
 function switchAvailability(state: 'rent' | 'return') {
   switch (state) {
     case 'rent': //借車
@@ -143,8 +143,8 @@ function switchAvailability(state: 'rent' | 'return') {
 
       <div class="Homecar">
         <div class="car-btns">
-          <button type="button" class="disable_g btn-orange se_btn" @click="switchAvailability('rent')">借車</button>
-          <button type="button" class="disable_g btn-green se_btn" @click="switchAvailability('return')">還車</button>
+          <button type="button" class="btn-rent se_btn" :class="{ 'bg-orange': isRent, 'text-white': isRent }" @click="switchAvailability('rent')">借車</button>
+          <button type="button" class="btn-return se_btn"  :class="{ 'bg-green': !isRent, 'text-white': !isRent }" @click="switchAvailability('return')">還車</button>
         </div>
         <span v-if="!MAP_TARGET">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200">
