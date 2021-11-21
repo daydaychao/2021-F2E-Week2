@@ -14,7 +14,7 @@
         <l-marker :lat-lng="shape.Geometry[0][0]" @click="selectedRoad(shape)">
           <l-icon>
             <div class="dialogBox road">
-              {{ '0'+(index+1) }}
+              {{ index>10?index+1:'0'+(index+1) }}
             </div>
           </l-icon>
         </l-marker>
@@ -26,7 +26,7 @@
         <template v-for="shape in selectedCyclingShape.Geometry" :key="shape">
           <l-polyline
           :lat-lngs="shape"
-          color="red"
+          color="#015D83"
         ></l-polyline>
         </template>
       </template>

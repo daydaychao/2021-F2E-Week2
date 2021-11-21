@@ -35,27 +35,34 @@ function selectedCyclingShape(bikeShape:any){
 <template>
   <main class="cycling-shape">
     <section class="menu">
-      <p>請選擇縣市
+      <p>選擇縣市
         <select v-model="selectCity" @change="handleSelect">
           <option v-for="(city, index) in cityList" :key="index" :value="city">
             {{ cityListZhTW[index] }}
           </option>
         </select>
       </p>
+      <p>請選擇區域或鄉鎮
+        <select>
+          <option>
+            我還沒做  
+          </option>
+        </select>
+      </p>
       <template v-for="(bikeShape, index) in bikeStore.getCyclingShape" :key="index" :value="bikeShape">
         <div class="road" @click="selectedCyclingShape(bikeShape)">
           <div class="block">
-            <p class="roadNum">{{"0"+(index+1)}}</p>
+            <p class="roadNum">{{ index>10?index+1:'0'+(index+1) }}</p>
           </div>
           <div class="block">
             <p class="roadName">{{bikeShape.RouteName}}</p>
-            <p class="roadDirect">
+            <p class="roadIfo">
               {{bikeShape.RoadSectionStart||"無資料"}}
               <span v-if="bikeShape.Direction=='雙向'">←</span>
               <span>→</span>
               {{bikeShape.RoadSectionEnd||"無資料"}}
             </p>
-            <p class="roadLength">路線長度 {{bikeShape.CyclingLength}}</p>
+            <p class="roadIfo">車道長度： <span class="roadLength">{{bikeShape.CyclingLength/100 + "KM"}}</span></p>
           </div>
         </div>
       </template>
@@ -85,7 +92,8 @@ function selectedCyclingShape(bikeShape:any){
 .menu {
   color: #fff;
   background: var(--blue85);
-  width: 360px;
+  width: 40%;
+  max-width: 360px;
   height: 100%;
   overflow: auto;
   display: flex;
@@ -100,28 +108,44 @@ function selectedCyclingShape(bikeShape:any){
   flex-direction: raw;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
 }
 
 .road .block{
-  padding: 0px 10px 0px 25px;
+  padding: 10px 15px 10px 25px;
 }
 .road .block:first-child{
   border-right: 1px solid white;
 }
+.road .block p{
+  margin: 10px 0;
+}
+.road .block p.roadNum{
+  margin: 0 0;
+}
+
 .roadName{
  font-size: 20px;
+ font-weight: bold;
 }
 
 .roadNum{
-  font-size: 28px;
+  width: 16px;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size: 36px;
+  line-height: 30px;
+  font-weight: bold;
 }
-.roadDirect{
-   font-size: 16px;
+.roadIfo{
+   font-size: 12px;
 }
 
 .road:last-child{
   border: none;
 }
-
+.roadLength{
+  font-size: 14px;
+}
 
 </style>
