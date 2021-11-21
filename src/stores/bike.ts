@@ -11,6 +11,7 @@ type typeBikeStore = {
   bikeNearByStations: TypeBikeStation[],
   bikeNearByAvailability: TypeBikeAvailability[],
   selectedBikeStation: any,
+  selectedCyclingShape: any,
   isRent: boolean
 }
 
@@ -27,6 +28,7 @@ export const useBikeStore = defineStore({
     bikeNearByStations: [],
     bikeNearByAvailability: [],
     selectedBikeStation: {},
+    selectedCyclingShape: {},
     isRent: true
   } as typeBikeStore),
 
@@ -46,6 +48,25 @@ export const useBikeStore = defineStore({
     async getCyclingShapeData(city: keyof typeof CyclingShapeCityName) {
       this.setLoading(true)
       const resData = await api.getCyclingShapeByCityName(city)
+
+      // format Geometry
+      for(let roadIndex = 0; roadIndex < resData.length ;roadIndex++){
+        let road = resData[roadIndex];
+        let roadGeometry = road.Geometry;
+        roadGeometry = roadGeometry.slice(16, roadGeometry.length).replaceAll("((","").replaceAll("))","").split("),("); // 字串格式處理
+        for(let subRoadIndex = 0;subRoadIndex<roadGeometry.length;subRoadIndex++){
+          roadGeometry[subRoadIndex] = roadGeometry[subRoadIndex].replaceAll(",",";").replaceAll(" ",",").split(";"); // 字串格式處理 + 轉陣列
+          for(let pointIndex =0;pointIndex < roadGeometry[subRoadIndex].length;pointIndex++){
+            roadGeometry[subRoadIndex][pointIndex] = roadGeometry[subRoadIndex][pointIndex].split(","); // 字串轉陣列
+             let location = []; // 經緯度順序交換
+             location.push(parseFloat(roadGeometry[subRoadIndex][pointIndex][1]))
+             location.push(parseFloat(roadGeometry[subRoadIndex][pointIndex][0]))
+             roadGeometry[subRoadIndex][pointIndex] = location;
+          }
+        }
+        resData[roadIndex].Geometry = roadGeometry;
+      }
+
       this.bikeCyclingShape = resData
       this.setLoading(false)
     },
@@ -72,7 +93,11 @@ export const useBikeStore = defineStore({
     },
     setSelectedBikeStation(stationInfo: any) {
       this.selectedBikeStation = stationInfo
+    },
+    setSelectedCyclingShape(cyclingShapefo:any) {
+      this.selectedCyclingShape = cyclingShapefo;
     }
+
   },
 
   getters: {
@@ -91,5 +116,6 @@ export const useBikeStore = defineStore({
     getSelectedBikeStation: (state) => state.selectedBikeStation,
     getIsRent: (state) => state.isRent,
     getHasLocation: (state) => Boolean(state.userLocation[0]),
+    getSelectedCyclingShape: (state) => state.selectedCyclingShape
   },
 })

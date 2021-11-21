@@ -367,6 +367,9 @@ h5::after{
 
 /* map custom marker */
 .dialogBox{
+  position: absolute;
+  right: -25px;
+  top: -50px;
   background-color: white;
   width: 50px;
   height: 50px;
@@ -388,6 +391,13 @@ h5::after{
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 12px solid white;
+}
+
+.dialogBox.road{
+  background-color: #015d83;
+}
+.dialogBox.road::after{
+  border-top: 12px solid #015d83;
 }
 
 .dialogBox.empty{
