@@ -260,13 +260,6 @@ label {
     width: 85%;
   }
 
-  /* 當關閉時  */
-  .closeMobileMenu {
-    position: fixed;
-    top: initial;
-    bottom: 0;
-    height: 60px;
-  }
   .btn-list {
     border-radius: 5px;
     border: none;
@@ -279,6 +272,18 @@ label {
     margin-top: 10px;
     outline: none;
     transition: 0.3s ease;
+  }
+
+  /* 當關閉時  */
+  .closeMobileMenu {
+    position: fixed;
+    top: initial;
+    bottom: 0;
+    height: 60px;
+  }
+
+  .closeMobileMenu .menu__flex {
+    display: none;
   }
 }
 </style>
