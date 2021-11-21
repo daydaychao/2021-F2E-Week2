@@ -37,6 +37,7 @@ export const useBikeStore = defineStore({
       this.setLoading(true)
       const resData = await api.getStationByCityName(city, lat, lon)
       this.bikeStations = resData
+      // this.userLocation = resData?[resData[0].StationPosition.PositionLat,resData[0].StationPosition.PositionLon]:this.userLocation;
       this.setLoading(false)
     },
     async getAvailabilityData(city: keyof typeof StationAndAvailabilityCityName) {
