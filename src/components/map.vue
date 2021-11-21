@@ -31,7 +31,7 @@
           </l-icon>
         </l-marker>
       </template>
-      <l-marker :lat-lng="location">
+      <l-marker :lat-lng="location" draggable @moveend="updateLocation($event)">
         <l-popup> 你在這裡 </l-popup>
       </l-marker>
     </l-map>
@@ -60,6 +60,7 @@ export default {
     LPopup,
   },
   props: ["location", "stations", "availability", "isRent"],
+  emits: ['MapEmit'],
   data() {
     return {
       zoom: 16,
@@ -92,6 +93,14 @@ export default {
   methods: {
     log(a) {
       console.log(a);
+    },
+    updateLocation(event){
+      const $bikeStore = useBikeStore();
+      let lat = event.target._latlng.lat
+      let lng = event.target._latlng.lng
+      $bikeStore.setLocation(lat,lng)
+      $bikeStore.getNearByStationData(lat, lng)
+      $bikeStore.getNearByAvailabilityData(lat, lng)
     },
     selectMarker(uid) {
       //設定當前選擇站點

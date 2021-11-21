@@ -24,6 +24,21 @@ enum MAP_TARGET  {
   'gps',
   undefined
 }
+
+let cityLocation = {
+  Chiayi:[23.4791464,120.4389658],
+  Hsinchu: [24.8074228,120.9640778],
+  Kaohsiung : [22.6363163,120.3345007],
+  KinmenCounty : [24.4511866,118.3781601],
+  MiaoliCounty : [24.5471823,120.8215889],
+  NewTaipei: [25.055992,121.4813674],
+  PingtungCounty : [22.6763066,120.4952129],
+  Taichung : [24.1463487,120.6634415],
+  Tainan : [22.9933086,120.2041862],
+  Taipei : [25.0497741,121.5206038],
+  Taoyuan: [24.9903435,121.3000532]
+}
+
 let mapTarget = ref(MAP_TARGET.undefined) // 0:city  1:gps
 
 // 附近的自行車租還資訊
@@ -66,15 +81,19 @@ function getNearByAvailabilityData() {
 //select打api
 async function handleSelect() {
   console.log('handleSelect')
-  await getStationData()
-  await getAvailabilityData()
-  mapTarget.value = MAP_TARGET['city']
+  if(selectCity.value){
+    bikeStore.setLocation(cityLocation[selectCity.value][0],cityLocation[selectCity.value][1])
+    handleGPS()
+  }
+  // getStationData()
+  // getAvailabilityData()
+  mapTarget.value = MAP_TARGET['gps']
 }
 
 async function handleGPS() {
   console.log('handleGPS')
-  await getNearByAvailabilityData()
   await getNearByStationData()
+  await getNearByAvailabilityData()
   mapTarget.value = MAP_TARGET['gps']
 }
 
@@ -112,10 +131,10 @@ function switchAvailability(state: 'rent' | 'return') {
   <main class="content">
 
   <!-- CITY地圖 -->
-  <article v-if="bikeStore.bikeStations.length > 0 && mapTarget === MAP_TARGET['city']" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%">
+  <!-- <article v-if="bikeStore.bikeStations.length > 0 && mapTarget === MAP_TARGET['city']" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%"> -->
     <!-- GPS地圖 -->..
-      <Map :location="[bikeStore.bikeStations[0].StationPosition.PositionLat, bikeStore.bikeStations[0].StationPosition.PositionLon]" :stations="bikeStore.bikeStations" :availability="bikeStore.bikeAvailability" :isRent="bikeStore.getIsRent" />
-    </article>
+      <!-- <Map :location="[bikeStore.bikeStations[0].StationPosition.PositionLat+0.000, bikeStore.bikeStations[0].StationPosition.PositionLon+0.0005]" :stations="bikeStore.bikeStations" :availability="bikeStore.bikeAvailability" :isRent="bikeStore.getIsRent" /> -->
+    <!-- </article> -->
 
     <article v-if="hasLocation && mapTarget === MAP_TARGET['gps']" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%">
     <!-- GPS地圖 -->
