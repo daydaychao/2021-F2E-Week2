@@ -1,5 +1,5 @@
 {
   "cSpell.words": ["Changhua", "Chiayi", "evenodd", "Hsinchu", "Hualien", "jssha", "Kinmen", "Lienchiang", "Miaoli", "Nantou", "Penghu", "Pingtung", "Taitung", "Yilan", "Yunlin"],
-  // "editor.formatOnSave": true,
-  "editor.formatOnSave": false
+  "editor.formatOnSave": true,
+  // "editor.formatOnSave": false
 }

@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import {ref,unref} from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
+const nowPath = ref(true);
+
 function goto(pathName: string) {
-  console.log('goto')
+  if(pathName ==='home'){
+    nowPath.value = true
+    router.push({ name: pathName })
+    return
+  }
+  nowPath.value = false
   router.push({ name: pathName })
 }
 </script>
@@ -15,8 +23,8 @@ function goto(pathName: string) {
       <img class="logo_m" src="@/assets/images/logo_m.png" />
     </div>
     <nav class="second-block">
-      <button class="btn-orange header_btn" @click="goto('home')">站點地圖</button>
-      <button class="disable btn-blue header_btn" @click="goto('cyclingShape')">自行車道</button>
+      <button class="btn-orange header_btn" :class="{'disable':!nowPath}" @click="goto('home')">站點地圖</button>
+      <button class="btn-blue header_btn" :class="{'disable':nowPath}" @click="goto('cyclingShape')">自行車道</button>
     </nav>
   </header>
 </template>

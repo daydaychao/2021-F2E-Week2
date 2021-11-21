@@ -4,7 +4,6 @@
   list-style: none;
 }
 
-
 .btn-orange {
   background: var(--orange);
   color: #fff;
@@ -20,7 +19,6 @@
   color: #fff !important;
   transition: 0.3s ease;
 }
-
 
 .btn-rent {
   background: #fff;
@@ -82,11 +80,11 @@
   margin-right: 25px;
 }
 
-.logo_pc{
+.logo_pc {
   display: block;
 }
 
-.logo_m{
+.logo_m {
   display: none;
 }
 
@@ -97,7 +95,7 @@
 .bg-orange {
   background: var(--orange);
 }
-.bg-green{
+.bg-green {
   background: var(--green);
 }
 .bg-white {
@@ -106,7 +104,7 @@
 .text-white {
   color: #fff;
 }
-.text-green{
+.text-green {
   color: var(--green);
 }
 .disable {
@@ -118,11 +116,11 @@
   background: #fff;
 }
 
-#app > main > article.car-nav > div.Homecar > div > button.disable_g.btn-orange{
+#app > main > article.car-nav > div.Homecar > div > button.disable_g.btn-orange {
   color: var(--orange);
 }
 
-#app > main > article.car-nav > div.Homecar > div > button.disable_g.btn-green{
+#app > main > article.car-nav > div.Homecar > div > button.disable_g.btn-green {
   color: var(--green);
 }
 
@@ -167,11 +165,11 @@
   margin: 0;
 }
 
-.Homeimg img{
+.Homeimg img {
   width: 20%;
 }
 
-#app > main > article.car-nav > div.Homeselect > span{
+#app > main > article.car-nav > div.Homeselect > span {
   margin-top: 5%;
 }
 
@@ -210,18 +208,18 @@
   margin-top: 5%;
 }
 
-.map_content{
+.map_content {
   width: 100%;
   height: calc(100vh - 160px);
   overflow: hidden;
 }
 
-.map_content::after{
+.map_content::after {
   content: '';
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.HomeCurrentStation{
+.HomeCurrentStation {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -234,11 +232,11 @@
   align-items: center;
 }
 
-.HomeCurrentStation > .StationName{
+.HomeCurrentStation > .StationName {
   margin-right: 1%;
 }
 
-.HomeCurrentStation > .StationNum{
+.HomeCurrentStation > .StationNum {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
@@ -251,7 +249,7 @@
   padding: 0 8%;
 } */
 
-.HomeCurrentStation > div.StationNum > div{
+.HomeCurrentStation > div.StationNum > div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -262,26 +260,26 @@
   font-size: 3rem;
 }
 
-.HomeCurrentStation h2{
+.HomeCurrentStation h2 {
   font-size: 2.25rem;
   margin: 0;
 }
 
-.HomeCurrentStation h4{
+.HomeCurrentStation h4 {
   font-size: 1rem;
   margin: 0;
   font-weight: normal;
 }
 
-h5{
+h5 {
   margin: 0 10px 0 0;
 }
 
-h5::after{
-  content: " : ";
+h5::after {
+  content: ' : ';
 }
 
-#app > main > article.map_content > img{
+#app > main > article.map_content > img {
   max-width: inherit;
   position: absolute;
   top: 50%;
@@ -289,13 +287,14 @@ h5::after{
   display: block;
   min-width: 100%;
   min-height: 100%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.footer_pc, .footer_m{
+.footer_pc,
+.footer_m {
   background: #c4c4c4;
   text-align: center;
   color: #fff;
@@ -314,7 +313,7 @@ h5::after{
   vertical-align: middle;
 }
 
-.footer_m{
+.footer_m {
   display: none;
 }
 
@@ -350,7 +349,7 @@ h5::after{
   cursor: pointer;
 }
 
-.GPS_circle svg{
+.GPS_circle svg {
   width: 50%;
 }
 
@@ -358,15 +357,13 @@ h5::after{
   cursor: pointer;
 }
 
-
 /* overwrite leaftlet style */
 .leaflet-pane {
   z-index: 0 !important;
 }
 
-
 /* map custom marker */
-.dialogBox{
+.dialogBox {
   position: absolute;
   right: -25px;
   top: -50px;
@@ -381,8 +378,8 @@ h5::after{
   font-weight: bold;
   line-height: 50px;
 }
-.dialogBox::after{
-  content:"";
+.dialogBox::after {
+  content: '';
   position: absolute;
   width: 0px;
   height: 0px;
@@ -393,32 +390,31 @@ h5::after{
   border-top: 12px solid white;
 }
 
-.dialogBox.road{
+.dialogBox.road {
   background-color: #015d83;
 }
-.dialogBox.road::after{
+.dialogBox.road::after {
   border-top: 12px solid #015d83;
 }
 
-.dialogBox.empty{
+.dialogBox.empty {
   background-color: #c4c4c4;
-
 }
-.dialogBox.empty::after{
+.dialogBox.empty::after {
   border-top: 12px solid #c4c4c4;
 }
 
-.dialogBox.rare{
-  background-color: #ee675c ;
+.dialogBox.rare {
+  background-color: #ee675c;
 }
-.dialogBox.rare::after{
-  border-top: 12px solid #ee675c ;
+.dialogBox.rare::after {
+  border-top: 12px solid #ee675c;
 }
 
-.dialogBox.enough{
+.dialogBox.enough {
   background-color: #a9c027;
 }
-.dialogBox.enough::after{
+.dialogBox.enough::after {
   border-top: 12px solid #a9c027;
 }
 
@@ -429,28 +425,28 @@ h5::after{
   font-size: 1.5rem;
 }
 
-@media screen and (max-width:710px) {
-  .header{
+@media screen and (max-width: 710px) {
+  .header {
     flex-direction: column;
     justify-content: space-evenly;
   }
 
-  #app > header > div.pointer{
+  #app > header > div.pointer {
     margin: 15px 0;
   }
 
-  #app > header > nav{
+  #app > header > nav {
     width: 90%;
     margin: 0 auto 5%;
     display: flex;
     justify-content: center;
   }
 
-  .header_btn{
+  .header_btn {
     width: 45%;
   }
 
-  .second-block button:first-child{
+  .second-block button:first-child {
     margin-right: 0;
   }
 
@@ -465,16 +461,16 @@ h5::after{
     z-index: 99;
   }
 
-  .Homeselect{
+  .Homeselect {
     width: 80%;
     margin: 5% auto 0;
   }
 
-  .Homeimg img{
+  .Homeimg img {
     width: 40%;
   }
 
-  .Homeimg > h1{
+  .Homeimg > h1 {
     font-size: 1rem;
   }
 
@@ -482,24 +478,24 @@ h5::after{
     font-size: 0.5rem;
   }
 
-  .Homecar{
+  .Homecar {
     position: absolute;
     bottom: 3%;
     left: 10%;
     width: 80%;
   }
 
-  .header_btn{
+  .header_btn {
     font-size: 1.2rem;
   }
 
-  .Homecar .car-btns{
+  .Homecar .car-btns {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 
-  .Homecar .car-btns > button{
+  .Homecar .car-btns > button {
     width: 35%;
     font-size: 1.5rem;
     padding: 3% 0;
@@ -507,37 +503,38 @@ h5::after{
     height: inherit;
   }
 
-  .Homecar .car-btns > button:first-child{
+  .Homecar .car-btns > button:first-child {
     margin-bottom: 10px;
   }
 
-  .Homecar span{
+  .Homecar span {
     display: none;
   }
 
-  #app > main > article.car-nav > div.Homeselect > span,#app > main > article.map_content > article > p{
+  #app > main > article.car-nav > div.Homeselect > span,
+  #app > main > article.map_content > article > p {
     display: none;
   }
 
-  .GPS article:first-child{
+  .GPS article:first-child {
     display: none;
   }
 
-  .logo_pc{
+  .logo_pc {
     display: none;
   }
 
-  .logo_m{
+  .logo_m {
     display: block;
     max-width: 130px;
   }
 
-  h5{
+  h5 {
     margin: 0;
   }
 
-  h5::after{
-    content: "";
+  h5::after {
+    content: '';
     display: none;
   }
 
@@ -547,11 +544,11 @@ h5::after{
     overflow: hidden;
   }
 
-  .Homeselect select{
+  .Homeselect select {
     min-width: inherit;
   }
 
-  .HomeCurrentStation{
+  .HomeCurrentStation {
     flex-direction: column;
     border-radius: 15px 15px 0px 0px;
   }
@@ -574,63 +571,70 @@ h5::after{
     padding: 0 16%;
   } */
 
-  .GPS{
+  .GPS {
     bottom: calc(100vh - 81.5%);
     right: 5%;
   }
 
-  .GPS_circle{
+  .GPS_circle {
     width: 20%;
     height: 20%;
     font-size: 0.8rem;
     padding: 3%;
   }
 
-  .StationNum{
+  .StationNum {
     align-items: center;
     width: 100%;
     justify-content: center;
   }
 
-  .StationName h2{
+  .StationName h2 {
     font-size: 1.2rem;
     margin-bottom: 10px;
   }
 
-  .HomeCurrentStation .number{
+  .HomeCurrentStation .number {
     font-size: 2rem;
     line-height: 2rem;
   }
 
-  .footer_pc{
+  .footer_pc {
     display: none;
   }
 
-  .footer_m{
+  .footer_m {
     display: block;
     text-align: center;
   }
 
-  .Homeimg{
+  .Homeimg {
     top: 50%;
     transform: translateY(-85%);
   }
 }
 
-@media screen and (max-height:750px) {
-  .Homeimg img{
+@media screen and (max-height: 750px) {
+  .Homeimg img {
     display: none;
   }
 
-  .Homeimg{
+  .Homeimg {
     top: 50%;
     transform: translateY(-450%);
   }
 }
 
 /* pointer-events fixed*/
-.car-nav,.car-btns{
+.car-nav,
+.car-btns {
   pointer-events: none;
 }
-.car-btns button,.Homeselect{
-  pointer-events: all;}
+.car-btns button,
+.Homeselect {
+  pointer-events: all;
+}
+
+.hidden {
+  display: none;
+}
